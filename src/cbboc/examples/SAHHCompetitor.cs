@@ -160,9 +160,10 @@ public sealed class SAHHCompetitor : Competitor
 
             // linear annealing schedule...
             //TODO: FIX THIS AFTER INSTALLING MONO ON LINUX
-            double temperature = LinearInterpolation.apply(
+			double temperature = ((1.0 - (i / (double) (numEvaluations - 1)))*(saScheduleUpperBound-saScheduleLowerBound))+saScheduleLowerBound;
+			/*(Java) double temperature = LinearInterpolation.apply(
                     i, 0, numEvaluations - 1,
-                    saScheduleUpperBound, saScheduleLowerBound);
+                    saScheduleUpperBound, saScheduleLowerBound);*/
             if (SAAccept(lastValue, value, temperature))
             {
                 incumbent = incoming;
