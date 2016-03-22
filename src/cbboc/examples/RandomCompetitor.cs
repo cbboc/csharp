@@ -45,10 +45,9 @@ public sealed class RandomCompetitor : Competitor
 
     ///////////////////////////////	
 
-    public static void main(String[] args) //(Java) throws IOException
+    public static void Main(String[] args) //(Java) throws IOException
     {
-
         Competitor competitor = new RandomCompetitor();
-    CBBOC2016.run( competitor );
-	}
+        CBBOC2016.run( competitor );
+	  }
 }

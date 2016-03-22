@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Web.Script.Serialization;
+using System.Reflection;
 
 namespace cbboc
 {
     public sealed class ProblemClass
     {
-        private TrainingCategory trainingCategory;
-        private readonly List<ObjectiveFn> training = new List<ObjectiveFn>();
-        private readonly List<ObjectiveFn> testing = new List<ObjectiveFn>();
+		public TrainingCategory trainingCategory;
+		public readonly List<ObjectiveFn> training = new List<ObjectiveFn> ();
+		public readonly List<ObjectiveFn> testing = new List<ObjectiveFn> ();
 
         ///////////////////////////////
 
         private static List<string> readInstances(string testingInventoryName) //File testingFilesTxt) //(Java) throws IOException
         {
             //(Java) if (!testingFilesTxt.exists())
-            if (File.Exists(testingInventoryName))
+            if (!File.Exists(testingInventoryName))
                 throw new FileNotFoundException(testingInventoryName + " not found"); //(Java) IllegalArgumentException();
 
             //(Java) InputStream is = new FileInputStream(testingFilesTxt);
@@ -132,19 +134,21 @@ namespace cbboc
         public override string ToString()
         {
             //(Java) return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+			//return (new JavaScriptSerializer().Serialize(this));
+
             StringBuilder sb = new StringBuilder();
-            foreach (System.Reflection.PropertyInfo property in this.GetType().GetProperties())
-            {
-                sb.Append(property.Name);
+		    
+			foreach (System.Reflection.FieldInfo field in this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public))
+			{
+                sb.Append(field.Name);
                 sb.Append(": ");
-                if (property.GetIndexParameters().Length > 0)
-                {
-                    sb.Append("Indexed Property cannot be used");
-                }
-                else
-                {
-                    sb.Append(property.GetValue(this, null));
-                }
+
+				var value = field.GetValue (this);
+				if (value is List<ObjectiveFn>) {
+					sb.Append("["+string.Join(", ", (List<ObjectiveFn>)value)+"]");
+				} else {
+					sb.Append(field.GetValue(this));
+				}
 
                 sb.Append(Environment.NewLine);
             }

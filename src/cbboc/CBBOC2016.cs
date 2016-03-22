@@ -124,25 +124,25 @@ namespace cbboc
         private sealed class OutputResults
         {
             //(Java) JUST readonly ON ALL
-            readonly string competitorName;
-            readonly string competitorLanguage = "C#";
-            readonly string problemClassName;
+            public readonly string competitorName;
+            public readonly string competitorLanguage = "C#";
+            public readonly string problemClassName;
             // readonly string trainingCategory;
-            readonly TrainingCategory trainingCategory;
-            readonly string datetime;
-            readonly List<Result> trainingResults = new List<Result>(); //(Java) new ArrayList<Result>();
-            readonly long trainingWallClockUsage;
-            readonly List<Result> testingResults = new List<Result>(); //(Java) new ArrayList<Result>();
-            readonly long testingWallClockUsage;
+            public readonly TrainingCategory trainingCategory;
+            public readonly string datetime;
+            public readonly List<Result> trainingResults = new List<Result>(); //(Java) new ArrayList<Result>();
+            public readonly long trainingWallClockUsage;
+            public readonly List<Result> testingResults = new List<Result>(); //(Java) new ArrayList<Result>();
+            public readonly long testingWallClockUsage;
 
             ///////////////////////////
 
             //(Java) static final
-            private sealed class Result
+            public sealed class Result
             {
-                private readonly long remainingEvaluations;
-                private readonly long remainingEvaluationsWhenBestReached;
-                private readonly double bestValue;
+                public readonly long remainingEvaluations;
+                public readonly long remainingEvaluationsWhenBestReached;
+                public readonly double bestValue;
 
                 ///////////////////////////
 
@@ -163,8 +163,8 @@ namespace cbboc
                 this.competitorName = competitorName;
                 this.problemClassName = problemClassName;
                 this.datetime = datetime;
-                //(Java) Diag.println(problemClass);
-                //(Java) Diag.println(problemClass.getTrainingCategory());
+				Console.WriteLine(problemClass.ToString());
+				Console.WriteLine(problemClass.getTrainingCategory());
                 this.trainingCategory = problemClass.getTrainingCategory();
                 foreach (ObjectiveFn o in problemClass.getTrainingInstances())
                 {
@@ -190,7 +190,7 @@ namespace cbboc
                 //(Java) result = result.replaceAll(",", ",\n\t");
                 //(Java) return result;
                 var json = new JavaScriptSerializer().Serialize(this);
-                return json;
+				return json.Replace(",",",\n\t");
             }
         }
 

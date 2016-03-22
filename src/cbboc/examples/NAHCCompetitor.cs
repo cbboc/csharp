@@ -71,12 +71,14 @@ public sealed class NAHCCompetitor : Competitor
 
     ///////////////////////////////	
 
-    public static void main(String[] args) //(Java) throws IOException
+    public static int Main(string[] args) //(Java) throws IOException
     {
 
         Competitor competitor = new NAHCCompetitor();
         CBBOC2016.run(competitor);
 
         Console.WriteLine("All done.");
+
+        return 0;
     }
 }

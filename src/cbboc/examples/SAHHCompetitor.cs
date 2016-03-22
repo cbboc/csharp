@@ -189,7 +189,7 @@ public sealed class SAHHCompetitor : Competitor
 
     ///////////////////////////////	
 
-    public static void main(String[] args) //(Java) throws IOException
+    public static void Main(String[] args) //(Java) throws IOException
     {
 
         Competitor competitor = new SAHHCompetitor(TrainingCategory.SHORT);

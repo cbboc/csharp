@@ -4,9 +4,9 @@ namespace cbboc
 {
     public sealed class ObjectiveFn
     {
-        private readonly ProblemInstance instance;
-        private readonly TimingMode timingMode;
-        private long remainingEvaluations;
+        public readonly ProblemInstance instance;
+        public readonly TimingMode timingMode;
+        public long remainingEvaluations;
 
         private Tuple<long, double> remainingEvaluationsAtBestValue = null; // Pair.of( -1L, Double.NaN );
 

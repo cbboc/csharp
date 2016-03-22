@@ -156,7 +156,7 @@ namespace cbboc
 
         ///////////////////////////////	
 
-        public static void main(String[] args) //(Java) throws IOException
+        /*public static void Main(String[] args) //(Java) throws IOException
         {
             string root = Directory.GetCurrentDirectory(); //(Java) System.getProperty("user.dir");
             // String path = root + "/resources/" + "00000.txt";
@@ -171,6 +171,6 @@ namespace cbboc
             Console.WriteLine(prob.value(candidate));
 
             Console.WriteLine("All done");
-        }
+        }*/
     }
 }
