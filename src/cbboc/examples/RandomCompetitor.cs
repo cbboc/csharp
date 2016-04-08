@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using cbboc;
 
@@ -11,7 +12,7 @@ public sealed class RandomCompetitor : Competitor
     public override void train(List<ObjectiveFn> trainingSet, long maxTimeInMilliseconds)
     {
         // no training because we're in TrainingCategory.NONE 
-        throw new InvalidOperationException(); //(Java) UnsupportedOperationException();
+        throw new InvalidOperationException();
     }
 
     public override void test(ObjectiveFn testCase, long maxTimeInMilliseconds)
@@ -36,9 +37,18 @@ public sealed class RandomCompetitor : Competitor
 
     private static bool[] randomBitvector(int length)
     {
+		//Trying to make generating random bit vectors faster
+		int numBytes = (length - 1) / 8;
         bool[] result = new bool[length];
-        for (int i = 0; i < length; ++i)
-            result[i] = (rand.NextDouble() >= 0.5); //(Java) RNG.get().nextBoolean();
+		byte[] bytes = new byte[numBytes];
+		rand.NextBytes (bytes);
+		BitArray bits = new BitArray (bytes);
+
+		//CopyTo was faster than the for loop 
+		//Not sure how to resize BitArray to length
+		bits.CopyTo (result, 0);
+		for (int i = bits.Count; i < length; ++i)
+			result [i] = rand.NextDouble() >= 0.5;
 
         return result;
     }
@@ -48,6 +58,6 @@ public sealed class RandomCompetitor : Competitor
     public static void Main(String[] args) //(Java) throws IOException
     {
         Competitor competitor = new RandomCompetitor();
-        CBBOC2016.run( competitor );
+        CBBOC.run( competitor );
 	  }
 }

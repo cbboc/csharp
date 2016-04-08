@@ -32,35 +32,33 @@ namespace cbboc
         {
 
             //(Java) readonly 
-            long trainTimeNow = CBBOC2016.trainTime.ElapsedMilliseconds;
-            long testTimeNow = CBBOC2016.testTime.ElapsedMilliseconds;
+            long trainTimeNow = CBBOC.trainTime.ElapsedMilliseconds;
+            long testTimeNow = CBBOC.testTime.ElapsedMilliseconds;
 
             if (timingMode == TimingMode.TRAINING)
             {
-                if (trainTimeNow > CBBOC2016.trainingEndTime)
-                    throw new CBBOC2016.TimeExceededException();
+                if (trainTimeNow > CBBOC.trainingEndTime)
+                    throw new CBBOC.TimeExceededException();
             }
             else if (timingMode == TimingMode.TESTING)
             {
-                if (testTimeNow > CBBOC2016.testingEndTime)
-                    throw new CBBOC2016.TimeExceededException();
+                if (testTimeNow > CBBOC.testingEndTime)
+                    throw new CBBOC.TimeExceededException();
             }
             else
             {
-                throw new InvalidOperationException(); //(Java) IllegalStateException();
+                throw new InvalidOperationException();
             }
 
             ///////////////////////////
 
             if (remainingEvaluations <= 0)
             {
-                throw new CBBOC2016.EvaluationsExceededException();
+                throw new CBBOC.EvaluationsExceededException();
             }
             else
             {
-                //(Java) readonly
                 double value = instance.value(candidate);
-                //(Java) remainingEvaluations.setValue(remainingEvaluations.getValue() - 1);
                 remainingEvaluations--;
 
                 // We are maximizing...

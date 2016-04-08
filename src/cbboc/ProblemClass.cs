@@ -16,29 +16,11 @@ namespace cbboc
 
         ///////////////////////////////
 
-        private static List<string> readInstances(string testingInventoryName) //File testingFilesTxt) //(Java) throws IOException
+        private static List<string> readInstances(string testingInventoryName) //(Java) throws IOException
         {
-            //(Java) if (!testingFilesTxt.exists())
             if (!File.Exists(testingInventoryName))
-                throw new FileNotFoundException(testingInventoryName + " not found"); //(Java) IllegalArgumentException();
+                throw new FileNotFoundException(testingInventoryName + " not found");
 
-            //(Java) InputStream is = new FileInputStream(testingFilesTxt);
-            //(Java) LineNumberReader r = new LineNumberReader(new BufferedReader(new InputStreamReader( is )));
-
-            //(Java) string line = r.readLine();
-            //(Java) Scanner scanner = new Scanner(line);
-            //(Java) readonly
-            //(Java) int numInstances;
-            //(Java) try
-            //(Java) {
-            //(Java) numInstances = scanner.nextInt();
-            //(Java) }
-            //(Java) finally
-            //(Java) {
-            //(Java) scanner.close();
-            //(Java) }
-
-            //(Java) try
             int numInstances;
             List<string> result = new List<string>();
             using (StreamReader sr = File.OpenText(testingInventoryName))
@@ -58,10 +40,6 @@ namespace cbboc
                 }
             }
             return result;
-            //(Java) finally
-            //(Java) {
-            //(Java) r.close();
-            //(Java) }
         }
 
         ///////////////////////////////	
@@ -70,13 +48,6 @@ namespace cbboc
         {
 
             this.trainingCategory = trainingCategory;
-            //(Java) File trainingFilesInventory = new File(root + "/trainingFiles.txt");
-            //(Java) if (!trainingFilesInventory.exists())
-            //(Java)    throw new RuntimeException("Fatal problem class file error: cannot find " + trainingFilesInventory);
-
-            //(Java) File testingFilesInventory = new File(root + "/testingFiles.txt");
-            //(Java) if (!testingFilesInventory.exists())
-            //(Java)    throw new RuntimeException("Fatal problem class file error: cannot find " + testingFilesInventory);
 
             string trainingFilesInventory = root + "/trainingFiles.txt";
             string testingFilesInventory = root + "/testingFiles.txt";
@@ -94,7 +65,7 @@ namespace cbboc
                 case TrainingCategory.SHORT:
                 case TrainingCategory.LONG:
                     foreach (string s in trainingFiles)
-                        trainingInstances.Add(new ProblemInstance(File.OpenText(root + "/" + s))); //(Java) new FileInputStream(root + "/" + s)));
+                        trainingInstances.Add(new ProblemInstance(File.OpenText(root + "/" + s))); 
                     break;
             }
 
@@ -114,7 +85,7 @@ namespace cbboc
 
             List<ProblemInstance> testingInstances = new List<ProblemInstance>();
             foreach (string f in testingFiles)
-                testingInstances.Add(new ProblemInstance(File.OpenText(root + "/" + f))); //(Java) new FileInputStream(root + "/" + f)));
+                testingInstances.Add(new ProblemInstance(File.OpenText(root + "/" + f))); 
 
             foreach (ProblemInstance p in testingInstances)
             {
@@ -133,9 +104,6 @@ namespace cbboc
 
         public override string ToString()
         {
-            //(Java) return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-			//return (new JavaScriptSerializer().Serialize(this));
-
             StringBuilder sb = new StringBuilder();
 		    
 			foreach (System.Reflection.FieldInfo field in this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public))

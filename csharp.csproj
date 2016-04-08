@@ -24,7 +24,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <!--OutputPath>bin\Release</OutputPath-->
+    <OutputPath>.</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
@@ -37,13 +38,13 @@
   </ItemGroup>
   -->
   <ItemGroup>
-    <Compile Include="src\cbboc\CBBOC2016.cs" />
+    <Compile Include="src\cbboc\CBBOC.cs" />
     <Compile Include="src\cbboc\Competitor.cs" />
     <Compile Include="src\cbboc\ObjectiveFn.cs" />
     <Compile Include="src\cbboc\ProblemClass.cs" />
     <Compile Include="src\cbboc\ProblemInstance.cs" />
     <Compile Include="src\cbboc\TrainingCategory.cs" />
-    <Compile Include="src\cbboc\examples\SAHHCompetitor.cs" />
+    <Compile Include="src\cbboc\examples\NAHCCompetitor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -55,8 +56,8 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\cbboc\examples\NAHCCompetitor.cs" />
-    <None Include="src\cbboc\examples\RandomCompetitor.cs" />
     <None Include="packages.config" />
+    <None Include="src\cbboc\examples\SAHHCompetitor.cs" />
+    <None Include="src\cbboc\examples\RandomCompetitor.cs" />
   </ItemGroup>
 </Project>

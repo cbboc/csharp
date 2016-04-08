@@ -28,7 +28,7 @@ public sealed class SAHHCompetitor : Competitor
     WhiteTemperatureRangeForSA(List<double> fitnessTrajectory)
     {
         if (fitnessTrajectory.Count == 0)
-            throw new ArgumentException(); //(Java) IllegalArgumentException();
+            throw new ArgumentException();
 
         /**
          * @see:
@@ -106,8 +106,8 @@ public sealed class SAHHCompetitor : Competitor
             saScheduleUpperBounds[i] = saScheduleBounds.Item2;
         }
 
-        saScheduleLowerBound = saScheduleLowerBounds.Average(); //(Java) StatUtils.mean(saScheduleLowerBounds);
-        saScheduleUpperBound = saScheduleUpperBounds.Average(); //(Java) StatUtils.mean(saScheduleUpperBounds);
+        saScheduleLowerBound = saScheduleLowerBounds.Average();
+        saScheduleUpperBound = saScheduleUpperBounds.Average();
         Debug.Assert(invariant());
     }
 
@@ -159,11 +159,7 @@ public sealed class SAHHCompetitor : Competitor
             double value = testCase.value(incoming);
 
             // linear annealing schedule...
-            //TODO: FIX THIS AFTER INSTALLING MONO ON LINUX
 			double temperature = ((1.0 - (i / (double) (numEvaluations - 1)))*(saScheduleUpperBound-saScheduleLowerBound))+saScheduleLowerBound;
-			/*(Java) double temperature = LinearInterpolation.apply(
-                    i, 0, numEvaluations - 1,
-                    saScheduleUpperBound, saScheduleLowerBound);*/
             if (SAAccept(lastValue, value, temperature))
             {
                 incumbent = incoming;
@@ -194,7 +190,7 @@ public sealed class SAHHCompetitor : Competitor
     {
 
         Competitor competitor = new SAHHCompetitor(TrainingCategory.SHORT);
-        CBBOC2016.run(competitor);
+        CBBOC.run(competitor);
 
         Console.Error.WriteLine("minDiffDivT: " + minDiffDivT + "exp:" + Math.Exp(minDiffDivT));
         Console.Error.WriteLine("maxDiffDivT:" + maxDiffDivT + "exp:" + Math.Exp(maxDiffDivT));

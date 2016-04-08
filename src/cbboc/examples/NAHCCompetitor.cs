@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using cbboc;
 
@@ -16,7 +17,7 @@ public sealed class NAHCCompetitor : Competitor
     public override void train(List<ObjectiveFn> trainingSet, long maxTimeInMilliseconds)
     {
         // no training because we're in TrainingCategory.NONE 
-        throw new InvalidOperationException(); //(Java) UnsupportedOperationException();
+        throw new InvalidOperationException();
     }
 
     ///////////////////////////////	
@@ -75,7 +76,7 @@ public sealed class NAHCCompetitor : Competitor
     {
 
         Competitor competitor = new NAHCCompetitor();
-        CBBOC2016.run(competitor);
+        CBBOC.run(competitor);
 
         Console.WriteLine("All done.");
 

@@ -13,51 +13,37 @@ namespace cbboc
         private int maxEvalsPerInstance;
         private int K;
 
+		// Change for 2016:
+		// Instead of each file having N+1 rows (header and N functions), 
+		// where N is the number of problem variables, each now has M+1 rows, 
+		// with the value of M added to the end of the header.
+		private int M;
+
         private List<Tuple<int[], double[]>> data = new List<Tuple<int[], double[]>>();
 
         ///////////////////////////////
 
         public ProblemInstance(StreamReader sr) //(Java) throws IOException
         {
-            //(Java) LineNumberReader r = new LineNumberReader(
-
-            //(Java)    new BufferedReader(new InputStreamReader( is )));
-
-            //(Java) Scanner s = null;
-
             try
             {
                 string line = sr.ReadLine();
-                //(Java) s = new Scanner(line);
-
-                //(Java) numGenes = s.nextInt();
-                //(Java) maxEvalsPerInstance = s.nextInt();
-                //(Java) K = s.nextInt();
 
                 int[] instanceInfo = line.Split(null).Select(n => Convert.ToInt32(n)).ToArray();
                 numGenes = instanceInfo[0];
                 maxEvalsPerInstance = instanceInfo[1];
                 K = instanceInfo[2];
+				M = instanceInfo[3];
 
-                for (int i = 0; i < numGenes; ++i)
+				int numRows = M;
+
+                for (int i = 0; i < numRows; ++i)
                 {
                     line = sr.ReadLine();
                     string[] tokens = line.Split(null);
 
-                    //(Java) s = new Scanner(line);
-
-                    //(Java) int[] iarray = new int[K + 1];
-                    //(Java) for (int j = 0; j < K + 1; ++j)
-                    //(Java)    iarray[j] = s.nextInt();
-
-                    //(Java) readonly
-                    //(Java) int numFks = 1 << (K + 1);
-                    //(Java) double[] darray = new double[numFks];
-                    //(Java) for (int j = 0; j < numFks; ++j)
-                    //(Java)    darray[j] = s.nextDouble();
-
-                    int[] iarray = tokens.Take(K + 1).Select(n => Convert.ToInt32(n)).ToArray();
-                    double[] darray = tokens.Skip(K + 1).Select(n => Convert.ToDouble(n)).ToArray();
+                    int[] iarray = tokens.Take(K).Select(n => Convert.ToInt32(n)).ToArray();
+                    double[] darray = tokens.Skip(K).Select(n => Convert.ToDouble(n)).ToArray();
 
                     data.Add(Tuple.Create(iarray, darray));
                 }
@@ -82,7 +68,7 @@ namespace cbboc
         public double value(bool[] candidate)
         {
             if (candidate.Length != getNumGenes())
-                throw new ArgumentException("candidate of length " + getNumGenes() + " expected, found " + candidate.Length); //(Java) IllegalArgumentException("candidate of length " + getNumGenes() + " expected, found " + candidate.length);
+                throw new ArgumentException("candidate of length " + getNumGenes() + " expected, found " + candidate.Length);
 
             double total = 0.0;
             for (int i = 0; i < getNumGenes(); ++i)
@@ -126,8 +112,8 @@ namespace cbboc
             result.Append(",data=[\n");
             for (int i = 0; i < data.Count; ++i)
             {
-                result.Append("(" + data[i].Item1.ToString()); //(Java) Arrays.toString(data.get(i).getLeft()));
-                result.Append("," + data[i].Item2.ToString()); //(Java) Arrays.toString(data.get(i).getRight()));
+                result.Append("(" + data[i].Item1.ToString());
+                result.Append("," + data[i].Item2.ToString());
                 result.Append(")\n");
             }
             result.Append("]]");
