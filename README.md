@@ -12,10 +12,20 @@ sudo apt-get update
 sudo apt-get install mono-complete
 ```
 
+
+====================
+To open CBBOC in Mono:
+
+1) Run MonoDevelop
+
+2) Open 'csharp/csharp.sln'
+
+
 ====================
 To Exclude Files from Build in Mono:
 
 1) Right-click file in "Solution" Pad
+
 2) Select "Building Action" > "None"
 
 
@@ -23,4 +33,15 @@ To Exclude Files from Build in Mono:
 To Include Files to Build in Mono:
 
 1) Right-click file in "Solution" Pad
+
 2) Select "Building Action" > "Compile"
+
+
+====================
+For command-line help see:
+
+http://www.mono-project.com/docs/about-mono/languages/csharp/
+
+http://www.mono-project.com/docs/getting-started/mono-basics/
+
+Or the man pages for mcs.

@@ -49,7 +49,7 @@ namespace cbboc
 
             trainTime = Stopwatch.StartNew();
             long maxTime = BASE_TIME_PER_INSTANCE_IN_MILLIS * p.Count * (long)client.getTrainingCategory();
-            trainingEndTime = maxTime;
+			trainingEndTime = maxTime;
 
             try
             {
@@ -80,7 +80,7 @@ namespace cbboc
                 {
                     long maxTime = BASE_TIME_PER_INSTANCE_IN_MILLIS;
 
-                    testingEndTime = maxTime;
+					testingEndTime = testTime.ElapsedMilliseconds + maxTime;
                     client.test(fn, maxTime);
                 }
                 catch (TimeExceededException)
