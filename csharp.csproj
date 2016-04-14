@@ -44,7 +44,7 @@
     <Compile Include="src\cbboc\ProblemClass.cs" />
     <Compile Include="src\cbboc\ProblemInstance.cs" />
     <Compile Include="src\cbboc\TrainingCategory.cs" />
-    <Compile Include="src\cbboc\examples\NAHCCompetitor.cs" />
+    <Compile Include="src\cbboc\examples\SAHHCompetitor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="src\cbboc\examples\SAHHCompetitor.cs" />
     <None Include="src\cbboc\examples\RandomCompetitor.cs" />
+    <None Include="src\cbboc\examples\NAHCCompetitor.cs" />
   </ItemGroup>
 </Project>
