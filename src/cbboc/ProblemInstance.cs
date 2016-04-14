@@ -71,7 +71,7 @@ namespace cbboc
                 throw new ArgumentException("candidate of length " + getNumGenes() + " expected, found " + candidate.Length);
 
             double total = 0.0;
-            for (int i = 0; i < getNumGenes(); ++i)
+            for (int i = 0; i < M; ++i)
             {
                 int[] varIndices = data[i].Item1;
                 int fnTableIndex = 0;
