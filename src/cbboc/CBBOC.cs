@@ -216,7 +216,7 @@ namespace cbboc
             OutputResults results = new OutputResults(client.GetType().FullName,
                     timestamp, problemClassName, problemClass, actualTrainingTime, actualTestingTime);
 
-            string outputPath = path + "/results/" + "CBBOC2016results-" + client.GetType().Name + "-" + problemClassName + "-" + timestamp + ".json";
+            string outputPath = path + "/results/" + "CBBOCresults-" + client.GetType().Name + "-" + problemClassName + "-" + timestamp + ".json";
             using (StreamWriter sw = new StreamWriter(outputPath))
             {
                 sw.WriteLine(results.toJSonString());
