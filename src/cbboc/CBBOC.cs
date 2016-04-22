@@ -8,7 +8,7 @@ namespace cbboc
 {
     public sealed class CBBOC
     {
-        private readonly static long BASE_TIME_PER_INSTANCE_IN_MILLIS = 250 * 1000L;
+        private readonly static long BASE_TIME_PER_INSTANCE_IN_MILLIS = 60 * 1000L;
 
         ////////////////////////////////
 
