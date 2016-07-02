@@ -125,7 +125,7 @@ namespace cbboc
         private static bool allValidSize(List<Tuple<int[], double[]>> data, int k)
         {
             foreach (Tuple<int[], double[]> p in data)
-                if (p.Item1.Length != k + 1 || p.Item2.Length != 1 << (k + 1))
+                if (p.Item1.Length != k || p.Item2.Length != (1 << k))
                     return false;
 
             return true;
@@ -136,7 +136,7 @@ namespace cbboc
             return getNumGenes() > 0 &&
                 getMaxEvalsPerInstance() > 0 &&
                 K > 0 &&
-                data.Count == getNumGenes() &&
+                data.Count == M &&
                 allValidSize(data, K);
         }
 
